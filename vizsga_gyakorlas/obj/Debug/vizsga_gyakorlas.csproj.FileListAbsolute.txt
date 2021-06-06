@@ -1,0 +1,12 @@
+D:\Egyetem\5.felev\Adatvez\Vizsga\vizsga_gyakorlas\vizsga_gyakorlas\bin\Debug\vizsga_gyakorlas.exe.config
+D:\Egyetem\5.felev\Adatvez\Vizsga\vizsga_gyakorlas\vizsga_gyakorlas\bin\Debug\vizsga_gyakorlas.exe
+D:\Egyetem\5.felev\Adatvez\Vizsga\vizsga_gyakorlas\vizsga_gyakorlas\bin\Debug\vizsga_gyakorlas.pdb
+D:\Egyetem\5.felev\Adatvez\Vizsga\vizsga_gyakorlas\vizsga_gyakorlas\bin\Debug\EntityFramework.dll
+D:\Egyetem\5.felev\Adatvez\Vizsga\vizsga_gyakorlas\vizsga_gyakorlas\bin\Debug\EntityFramework.SqlServer.dll
+D:\Egyetem\5.felev\Adatvez\Vizsga\vizsga_gyakorlas\vizsga_gyakorlas\bin\Debug\EntityFramework.xml
+D:\Egyetem\5.felev\Adatvez\Vizsga\vizsga_gyakorlas\vizsga_gyakorlas\bin\Debug\EntityFramework.SqlServer.xml
+D:\Egyetem\5.felev\Adatvez\Vizsga\vizsga_gyakorlas\vizsga_gyakorlas\obj\Debug\vizsga_gyakorlas.csprojAssemblyReference.cache
+D:\Egyetem\5.felev\Adatvez\Vizsga\vizsga_gyakorlas\vizsga_gyakorlas\obj\Debug\vizsga_gyakorlas.csproj.CoreCompileInputs.cache
+D:\Egyetem\5.felev\Adatvez\Vizsga\vizsga_gyakorlas\vizsga_gyakorlas\obj\Debug\vizsga_gyakorlas.csproj.CopyComplete
+D:\Egyetem\5.felev\Adatvez\Vizsga\vizsga_gyakorlas\vizsga_gyakorlas\obj\Debug\vizsga_gyakorlas.exe
+D:\Egyetem\5.felev\Adatvez\Vizsga\vizsga_gyakorlas\vizsga_gyakorlas\obj\Debug\vizsga_gyakorlas.pdb

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cd88afbf0c83400d9943e0bcf7389b3a" Name="Diagram1">
+        <EntityTypeShape EntityType="vizsgaModel.Category" Width="1.5" PointX="3.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vizsgaModel.Customer" Width="1.5" PointX="1.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="vizsgaModel.CustomerSite" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="vizsgaModel.Invoice" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="vizsgaModel.InvoiceIssuer" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vizsgaModel.InvoiceItem" Width="1.5" PointX="10.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="vizsgaModel.Order" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="vizsgaModel.OrderItem" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="vizsgaModel.PaymentMethod" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="vizsgaModel.Product" Width="1.5" PointX="6" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="vizsgaModel.Status" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="vizsgaModel.VAT" Width="1.5" PointX="3.75" PointY="13.75" IsExpanded="true" />
+        <AssociationConnector Association="vizsgaModel.FK__Category__Parent__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="vizsgaModel.FK__Product__Categor__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="vizsgaModel.Customer_MainCustomerSite" ManuallyRouted="false" />
+        <AssociationConnector Association="vizsgaModel.FK__CustomerS__Custo__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="vizsgaModel.FK__Order__CustomerS__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="vizsgaModel.FK__Invoice__Invoice__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="vizsgaModel.FK__Invoice__OrderID__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="vizsgaModel.FK__InvoiceIt__Invoi__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="vizsgaModel.FK__InvoiceIt__Order__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="vizsgaModel.FK__Order__PaymentMe__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="vizsgaModel.FK__Order__StatusID__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="vizsgaModel.FK__OrderItem__Order__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="vizsgaModel.FK__OrderItem__Produ__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="vizsgaModel.FK__OrderItem__Statu__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="vizsgaModel.FK__Product__VATID__2C3393D0" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

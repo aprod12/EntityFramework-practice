@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="vizsgaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ParentCategoryID" Type="Int32" />
+    <NavigationProperty Name="Category1" Relationship="Self.FK__Category__Parent__29572725" FromRole="Category" ToRole="Category1" />
+    <NavigationProperty Name="Category2" Relationship="Self.FK__Category__Parent__29572725" FromRole="Category1" ToRole="Category" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__Product__Categor__2D27B809" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BankAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MainCustomerSiteID" Type="Int32" />
+    <Property Name="Total" Type="Double" />
+    <NavigationProperty Name="CustomerSite" Relationship="Self.Customer_MainCustomerSite" FromRole="Customer" ToRole="CustomerSite" />
+    <NavigationProperty Name="CustomerSites" Relationship="Self.FK__CustomerS__Custo__31EC6D26" FromRole="Customer" ToRole="CustomerSite" />
+  </EntityType>
+  <EntityType Name="CustomerSite">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ZipCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tel" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerID" Type="Int32" />
+    <NavigationProperty Name="Customers" Relationship="Self.Customer_MainCustomerSite" FromRole="CustomerSite" ToRole="Customer" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__CustomerS__Custo__31EC6D26" FromRole="CustomerSite" ToRole="Customer" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Order__CustomerS__35BCFE0A" FromRole="CustomerSite" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerZipCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="CustomerCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerStreet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PrintedCopies" Type="Int32" />
+    <Property Name="Cancelled" Type="Boolean" />
+    <Property Name="PaymentMethod" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CreationDate" Type="DateTime" Precision="3" />
+    <Property Name="DeliveryDate" Type="DateTime" Precision="3" />
+    <Property Name="PaymentDeadline" Type="DateTime" Precision="3" />
+    <Property Name="InvoiceIssuerID" Type="Int32" />
+    <Property Name="OrderID" Type="Int32" />
+    <NavigationProperty Name="InvoiceIssuer" Relationship="Self.FK__Invoice__Invoice__412EB0B6" FromRole="Invoice" ToRole="InvoiceIssuer" />
+    <NavigationProperty Name="Order" Relationship="Self.FK__Invoice__OrderID__4222D4EF" FromRole="Invoice" ToRole="Order" />
+    <NavigationProperty Name="InvoiceItems" Relationship="Self.FK__InvoiceIt__Invoi__44FF419A" FromRole="Invoice" ToRole="InvoiceItem" />
+  </EntityType>
+  <EntityType Name="InvoiceIssuer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZipCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TaxIdentifier" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="BankAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Invoices" Relationship="Self.FK__Invoice__Invoice__412EB0B6" FromRole="InvoiceIssuer" ToRole="Invoice" />
+  </EntityType>
+  <EntityType Name="InvoiceItem">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="VATPercentage" Type="Int32" />
+    <Property Name="InvoiceID" Type="Int32" />
+    <Property Name="OrderItemID" Type="Int32" />
+    <NavigationProperty Name="Invoice" Relationship="Self.FK__InvoiceIt__Invoi__44FF419A" FromRole="InvoiceItem" ToRole="Invoice" />
+    <NavigationProperty Name="OrderItem" Relationship="Self.FK__InvoiceIt__Order__45F365D3" FromRole="InvoiceItem" ToRole="OrderItem" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Deadline" Type="DateTime" Precision="3" />
+    <Property Name="CustomerSiteID" Type="Int32" />
+    <Property Name="StatusID" Type="Int32" />
+    <Property Name="PaymentMethodID" Type="Int32" />
+    <NavigationProperty Name="CustomerSite" Relationship="Self.FK__Order__CustomerS__35BCFE0A" FromRole="Order" ToRole="CustomerSite" />
+    <NavigationProperty Name="Invoices" Relationship="Self.FK__Invoice__OrderID__4222D4EF" FromRole="Order" ToRole="Invoice" />
+    <NavigationProperty Name="PaymentMethod" Relationship="Self.FK__Order__PaymentMe__37A5467C" FromRole="Order" ToRole="PaymentMethod" />
+    <NavigationProperty Name="Status" Relationship="Self.FK__Order__StatusID__36B12243" FromRole="Order" ToRole="Status" />
+    <NavigationProperty Name="OrderItems" Relationship="Self.FK__OrderItem__Order__3A81B327" FromRole="Order" ToRole="OrderItem" />
+  </EntityType>
+  <EntityType Name="OrderItem">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="OrderID" Type="Int32" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="StatusID" Type="Int32" />
+    <NavigationProperty Name="InvoiceItems" Relationship="Self.FK__InvoiceIt__Order__45F365D3" FromRole="OrderItem" ToRole="InvoiceItem" />
+    <NavigationProperty Name="Order" Relationship="Self.FK__OrderItem__Order__3A81B327" FromRole="OrderItem" ToRole="Order" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__OrderItem__Produ__3B75D760" FromRole="OrderItem" ToRole="Product" />
+    <NavigationProperty Name="Status" Relationship="Self.FK__OrderItem__Statu__3C69FB99" FromRole="OrderItem" ToRole="Status" />
+  </EntityType>
+  <EntityType Name="PaymentMethod">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Method" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Deadline" Type="Int32" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Order__PaymentMe__37A5467C" FromRole="PaymentMethod" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="Stock" Type="Int32" />
+    <Property Name="VATID" Type="Int32" />
+    <Property Name="CategoryID" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Category" Relationship="Self.FK__Product__Categor__2D27B809" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="OrderItems" Relationship="Self.FK__OrderItem__Produ__3B75D760" FromRole="Product" ToRole="OrderItem" />
+    <NavigationProperty Name="VAT" Relationship="Self.FK__Product__VATID__2C3393D0" FromRole="Product" ToRole="VAT" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Order__StatusID__36B12243" FromRole="Status" ToRole="Order" />
+    <NavigationProperty Name="OrderItems" Relationship="Self.FK__OrderItem__Statu__3C69FB99" FromRole="Status" ToRole="OrderItem" />
+  </EntityType>
+  <EntityType Name="VAT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Percentage" Type="Int32" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__Product__VATID__2C3393D0" FromRole="VAT" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK__Category__Parent__29572725">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Category1" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Category1">
+        <PropertyRef Name="ParentCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product__Categor__2D27B809">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Customer_MainCustomerSite">
+    <End Role="CustomerSite" Type="Self.CustomerSite" Multiplicity="0..1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerSite">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="MainCustomerSiteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CustomerS__Custo__31EC6D26">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="CustomerSite" Type="Self.CustomerSite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CustomerSite">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__CustomerS__35BCFE0A">
+    <End Role="CustomerSite" Type="Self.CustomerSite" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerSite">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="CustomerSiteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Invoice__Invoice__412EB0B6">
+    <End Role="InvoiceIssuer" Type="Self.InvoiceIssuer" Multiplicity="0..1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InvoiceIssuer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="InvoiceIssuerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Invoice__OrderID__4222D4EF">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__InvoiceIt__Invoi__44FF419A">
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="0..1" />
+    <End Role="InvoiceItem" Type="Self.InvoiceItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="InvoiceItem">
+        <PropertyRef Name="InvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__InvoiceIt__Order__45F365D3">
+    <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="0..1" />
+    <End Role="InvoiceItem" Type="Self.InvoiceItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderItem">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="InvoiceItem">
+        <PropertyRef Name="OrderItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__PaymentMe__37A5467C">
+    <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMethod">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="PaymentMethodID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__StatusID__36B12243">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderItem__Order__3A81B327">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderItem">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderItem__Produ__3B75D760">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderItem">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderItem__Statu__3C69FB99">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderItem">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product__VATID__2C3393D0">
+    <End Role="VAT" Type="Self.VAT" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VAT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="VATID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="vizsgaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="CustomerSites" EntityType="Self.CustomerSite" />
+    <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+    <EntitySet Name="InvoiceIssuers" EntityType="Self.InvoiceIssuer" />
+    <EntitySet Name="InvoiceItems" EntityType="Self.InvoiceItem" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="OrderItems" EntityType="Self.OrderItem" />
+    <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethod" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Status" EntityType="Self.Status" />
+    <EntitySet Name="VATs" EntityType="Self.VAT" />
+    <AssociationSet Name="FK__Category__Parent__29572725" Association="Self.FK__Category__Parent__29572725">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Category1" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product__Categor__2D27B809" Association="Self.FK__Product__Categor__2D27B809">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="Customer_MainCustomerSite" Association="Self.Customer_MainCustomerSite">
+      <End Role="CustomerSite" EntitySet="CustomerSites" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CustomerS__Custo__31EC6D26" Association="Self.FK__CustomerS__Custo__31EC6D26">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="CustomerSite" EntitySet="CustomerSites" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__CustomerS__35BCFE0A" Association="Self.FK__Order__CustomerS__35BCFE0A">
+      <End Role="CustomerSite" EntitySet="CustomerSites" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Invoice__Invoice__412EB0B6" Association="Self.FK__Invoice__Invoice__412EB0B6">
+      <End Role="InvoiceIssuer" EntitySet="InvoiceIssuers" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Invoice__OrderID__4222D4EF" Association="Self.FK__Invoice__OrderID__4222D4EF">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK__InvoiceIt__Invoi__44FF419A" Association="Self.FK__InvoiceIt__Invoi__44FF419A">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="InvoiceItem" EntitySet="InvoiceItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__InvoiceIt__Order__45F365D3" Association="Self.FK__InvoiceIt__Order__45F365D3">
+      <End Role="OrderItem" EntitySet="OrderItems" />
+      <End Role="InvoiceItem" EntitySet="InvoiceItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__PaymentMe__37A5467C" Association="Self.FK__Order__PaymentMe__37A5467C">
+      <End Role="PaymentMethod" EntitySet="PaymentMethods" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__StatusID__36B12243" Association="Self.FK__Order__StatusID__36B12243">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderItem__Order__3A81B327" Association="Self.FK__OrderItem__Order__3A81B327">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderItem" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderItem__Produ__3B75D760" Association="Self.FK__OrderItem__Produ__3B75D760">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="OrderItem" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderItem__Statu__3C69FB99" Association="Self.FK__OrderItem__Statu__3C69FB99">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="OrderItem" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product__VATID__2C3393D0" Association="Self.FK__Product__VATID__2C3393D0">
+      <End Role="VAT" EntitySet="VATs" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
